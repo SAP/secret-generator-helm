@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "secret-generator.fullname" . }}
+  labels:
+    {{- include "secret-generator.labels" . | nindent 4 }}
+spec:
+  ports:
+    - port: 443
+      protocol: TCP
+      targetPort: webhooks
+      name: https
+  selector:
+    {{- include "secret-generator.selectorLabels" . | nindent 4 }}
