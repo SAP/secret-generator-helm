@@ -1,0 +1,54 @@
+{{- $secretName := printf "%s-test-1-%s" (include "secret-generator.fullname" .) (randAlphaNum 10 | lower) }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $secretName }}
+  labels:
+    {{- include "secret-generator.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-weight: "0"
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+  labels:
+    secret-generator.cs.sap.com/enabled: "true"
+stringData:
+  password: "%generate:password:length=50"
+  uuid: "%generate:uuid"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "secret-generator.fullname" . }}-test-1
+  labels:
+    {{- include "secret-generator.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: test
+    helm.sh/hook-weight: "1"
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+spec:
+  containers:
+  - name: kubectl
+    image: bitnami/kubectl:{{ .Capabilities.KubeVersion.Version | trimPrefix "v" }}
+    command:
+    - bash
+    - -e
+    - -o
+    - pipefail
+    - -c
+    - |
+        password=$(kubectl get secret {{ $secretName }} -o jsonpath='{.data.password}' | base64 -d)
+        echo "got password: $password"
+        if [ ${#password} -ne 50 ]; then
+          echo "unexpected password length: ${#password}"
+          exit 1
+        fi
+        uuid=$(kubectl get secret {{ $secretName }} -o jsonpath='{.data.uuid}' | base64 -d)
+        echo "got uuid: $uuid"
+        if [ ${#uuid} -ne 36 ]; then
+          echo "unexpected uuid length: ${#uuid}"
+          exit 1
+        fi
+  serviceAccountName: {{ include "secret-generator.fullname" . }}-test
+  terminationGracePeriodSeconds: 3
+  restartPolicy: Never
