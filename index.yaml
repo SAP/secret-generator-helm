@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   secret-generator:
   - apiVersion: v2
+    appVersion: v0.4.48
+    created: "2024-10-07T07:19:14.112603123Z"
+    description: A Helm chart for https://github.com/sap/secret-generator
+    digest: ec0cbbfa148560c571f35ed6d576d1e4afae51b62f6cfa1aef8137cbe083bfcd
+    name: secret-generator
+    type: application
+    urls:
+    - https://github.com/SAP/secret-generator-helm/releases/download/0.4.44/secret-generator-0.4.44.tgz
+    version: 0.4.44
+  - apiVersion: v2
     appVersion: v0.4.47
     created: "2024-09-23T07:19:17.493246298Z"
     description: A Helm chart for https://github.com/sap/secret-generator
@@ -441,4 +451,4 @@ entries:
     urls:
     - https://github.com/SAP/secret-generator-helm/releases/download/0.4.0/secret-generator-0.4.0.tgz
     version: 0.4.0
-generated: "2024-09-23T07:19:17.492592257Z"
+generated: "2024-10-07T07:19:14.111010221Z"
