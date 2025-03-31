@@ -3,4 +3,4 @@ name: secret-generator
 description: A Helm chart for https://github.com/sap/secret-generator
 type: application
 version: 0.4.62
-appVersion: v0.4.66
+appVersion: v0.4.67
