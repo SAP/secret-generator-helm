@@ -119,3 +119,7 @@ webhooks:
   timeoutSeconds: 10
   failurePolicy: Fail
   reinvocationPolicy: Never
+  {{- with .Values.webhook.matchConditions }}
+  matchConditions:
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
