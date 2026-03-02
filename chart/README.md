@@ -1,6 +1,6 @@
 # secret-generator
 
-![Version: 0.4.80](https://img.shields.io/badge/Version-0.4.80-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.4.87](https://img.shields.io/badge/AppVersion-v0.4.87-informational?style=flat-square)
+![Version: 0.4.81](https://img.shields.io/badge/Version-0.4.81-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.4.88](https://img.shields.io/badge/AppVersion-v0.4.88-informational?style=flat-square)
 
 A Helm chart for https://github.com/sap/secret-generator
 
@@ -35,6 +35,8 @@ A Helm chart for https://github.com/sap/secret-generator
 | pdb.annotations | object | `{}` | Annotations to set on the PodDisruptionBudget |
 | pdb.minAvailable | string | `"1"` (defaults to 1 if not specified) | Number of pods that are available after eviction as number or percentage (e.g. 50%) |
 | pdb.maxUnavailable | string | `""` | Number of pods that are unavailable after eviction as number or percentage (e.g: 50%); has higher precedence over `pdb.minAvailable` |
+| webhook.matchConditions | list | `[]` | Match conditions for webhooks can be used for fine-grained request filtering. Docs: https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-matchconditions |
+| webhook.certManager | object | `{"enabled":false,"issuerGroup":"","issuerKind":"","issuerName":""}` | expression: 'request.resource.group != "rbac.authorization.k8s.io"' |
 | webhook.certManager.enabled | bool | `false` | Whether to use cert-manager to manage webhook tls |
 | webhook.certManager.issuerGroup | string | `""` | Issuer group (only relevant if enabled is true; if unset, the default cert-manager group is used) |
 | webhook.certManager.issuerKind | string | `""` | Issuer kind (only relevant if enabled is true; if unset, the default cert-manager type 'Issuer' is used) |
