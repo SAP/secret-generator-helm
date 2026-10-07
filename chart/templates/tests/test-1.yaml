@@ -6,12 +6,11 @@ metadata:
   name: {{ $secretName }}
   labels:
     {{- include "secret-generator.labels" . | nindent 4 }}
+    secret-generator.cs.sap.com/enabled: "true"
   annotations:
     helm.sh/hook: test
     helm.sh/hook-weight: "0"
     helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
-  labels:
-    secret-generator.cs.sap.com/enabled: "true"
 stringData:
   password: "%generate:password:length=50"
   uuid: "%generate:uuid"
