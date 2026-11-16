@@ -1,6 +1,6 @@
 # secret-generator
 
-![Version: 0.4.115](https://img.shields.io/badge/Version-0.4.115-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.4.124](https://img.shields.io/badge/AppVersion-v0.4.124-informational?style=flat-square)
+![Version: 0.4.116](https://img.shields.io/badge/Version-0.4.116-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.4.125](https://img.shields.io/badge/AppVersion-v0.4.125-informational?style=flat-square)
 
 A Helm chart for https://github.com/sap/secret-generator
 
